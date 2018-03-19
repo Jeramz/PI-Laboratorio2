@@ -96,16 +96,16 @@ public class Ahorcado {
         if(palabra.contains(letra)){
             if(this.palabra.contains("-")){
                 for(int i=0;i<this.palabra.length();i++){
-                    if((letra.toLowerCase().equals(palabra.substring(i,i+1)))||(letra.toUpperCase().equals(palabra.substring(i,i+1)))){
-                        respuesta+=letra;
+                    if((letra.toLowerCase().equals(palabra.toLowerCase().substring(i,i+1)))){
+                        respuesta+=palabra.subSequence(i, i+1);
                     }else{
                         respuesta+="-";
                     }
                 }
             }else{
                 for(int i=0;i<this.palabra.length();i++){
-                    if(letra.equals(palabra.substring(i,i+1))){
-                        respuesta+=letra;
+                    if((letra.toLowerCase().equals(palabra.toLowerCase().substring(i,i+1)))){
+                        respuesta+=palabra.subSequence(i, i+1);
                     }else{
                     respuesta+="-";
                 }

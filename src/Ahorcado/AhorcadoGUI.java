@@ -36,6 +36,7 @@ public class AhorcadoGUI extends JFrame{
         area=new JTextArea(5,10);
         areaPalabra=new JTextArea(0,10);
         areaPalabra.setText(palabraOculta);
+        areaPalabra.setEditable(false);
         lbTema=new JLabel("Tema: " + tema);
         
         lbTeclado=new JLabel("Teclado");
@@ -113,131 +114,209 @@ public class AhorcadoGUI extends JFrame{
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource().equals(btA)){
                 palabraOculta=miJuego.ingresarLetra("a", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
         }
         if(ae.getSource().equals(btB)){
                 palabraOculta=miJuego.ingresarLetra("b", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
         }
         if(ae.getSource().equals(btC)){
                 palabraOculta=miJuego.ingresarLetra("c", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btD)){
                 palabraOculta=miJuego.ingresarLetra("d", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btE)){
                 palabraOculta=miJuego.ingresarLetra("e", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btF)){
                 palabraOculta=miJuego.ingresarLetra("f", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btG)){
                 palabraOculta=miJuego.ingresarLetra("g", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btH)){
                 palabraOculta=miJuego.ingresarLetra("h", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btI)){
                 palabraOculta=miJuego.ingresarLetra("i", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btJ)){
                 palabraOculta=miJuego.ingresarLetra("j", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btK)){
                 palabraOculta=miJuego.ingresarLetra("k", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btL)){
                 palabraOculta=miJuego.ingresarLetra("l", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btM)){
                 palabraOculta=miJuego.ingresarLetra("m", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btN)){
                 palabraOculta=miJuego.ingresarLetra("n", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btO)){
                 palabraOculta=miJuego.ingresarLetra("o", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btP)){
                 palabraOculta=miJuego.ingresarLetra("p", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btQ)){
                 palabraOculta=miJuego.ingresarLetra("q", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btR)){
                 palabraOculta=miJuego.ingresarLetra("r", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btS)){
                 palabraOculta=miJuego.ingresarLetra("s", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btT)){
                 palabraOculta=miJuego.ingresarLetra("t", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btU)){
                 palabraOculta=miJuego.ingresarLetra("u", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btV)){
                 palabraOculta=miJuego.ingresarLetra("v", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btW)){
                 palabraOculta=miJuego.ingresarLetra("w", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btX)){
                 palabraOculta=miJuego.ingresarLetra("x", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btY)){
                 palabraOculta=miJuego.ingresarLetra("y", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btZ)){
                 palabraOculta=miJuego.ingresarLetra("z", palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
          }
