@@ -166,6 +166,7 @@ public class GestionMatriculasGUI extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==btAgregarCurso){
+            try{
             String codigoCurso=tfCodigoCurso.getText();
             String nombreCurso=tfNombreCurso.getText();
             String CreditosCurso=tfCreditosCurso.getText();
@@ -173,22 +174,35 @@ public class GestionMatriculasGUI extends JFrame implements ActionListener{
             Curso curso=new Curso();
             curso.setCodigo(codigoCurso);
             curso.setNombre(nombreCurso);
-            curso.setCreditos(CreditosCurso);
-            
+            curso.setCreditos(Integer.parseInt(CreditosCurso));
+       
             miuniversidad.agregarCurso(curso);
             this.setcombo(listaCursos, comboMatricularCursos);
             this.setcombo(listaCursos, comboCursoA);
             this.setcombo(listaCursos, comboCursoNota);
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "El valor ingresado en creditos es invalido, deben ser numeros");
+            }
+            catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "Hay Campos que no se han llenado");
+            }
             tfCodigoCurso.setText("");
             tfNombreCurso.setText("");
             tfCreditosCurso.setText("");
         }
         
         if(e.getSource()==btListarEstudiante){
+            try{
             JOptionPane.showMessageDialog(null, miuniversidad.listarEstudiantesCurso(miuniversidad.getCurso(comboCursoA.getItemAt(comboCursoA.getSelectedIndex()).toString())));
+            }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun curso");
+            }
         }
         
         if(e.getSource()==btMatricularEstudiante){
+            try{
             String codigo=tfCodigoEstudiante.getText();
             String nombre=tfNombreEstudiante.getText();
             String planEstudios=tfPlanEstudio.getText();
@@ -199,24 +213,48 @@ public class GestionMatriculasGUI extends JFrame implements ActionListener{
             estudiante.setPlanEstudio(planEstudios);
                     
             miuniversidad.matricularEstudianteCurso(miuniversidad.getCurso(comboMatricularCursos.getItemAt(comboMatricularCursos.getSelectedIndex()).toString()), estudiante);
+            }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado un curso a matricular");
+            }
+            tfCodigoEstudiante.setText("");
+            tfNombreEstudiante.setText("");
+            tfPlanEstudio.setText("");
         }
         
         if(e.getSource()==btAgregarNotaEstudiante){
+            try{
             String codigo=tfCodigoAgregarNota.getText();
-            String nombreCurso=tfNombreCursoNota.getText();
             double nota=Double.parseDouble(tfNotaEstudiante.getText());
             
             miuniversidad.asignarNotaCurso(codigo,miuniversidad.getCurso(comboCursoA.getItemAt(comboCursoA.getSelectedIndex()).toString()) , nota);
-                    
-            JOptionPane.showMessageDialog(null, "La nota ha sido registrada con exito");
+            
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "Debe ingresar un numero en nota");
+            }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun curso");
+            }
+            tfCodigoAgregarNota.setText("");
+            tfNotaEstudiante.setText("");
         }
         
         if(e.getSource()==btPromedioCurso){
-            JOptionPane.showMessageDialog(null, "El promedio de los estudiantes en el curso es de: " + miuniversidad.promedioEstudianteCurso(miuniversidad.getCurso(comboCursoA.getItemAt(comboCursoA.getSelectedIndex()).toString())));
+            try{
+            JOptionPane.showMessageDialog(null,miuniversidad.promedioEstudianteCurso(miuniversidad.getCurso(comboCursoA.getItemAt(comboCursoA.getSelectedIndex()).toString())));
+            }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun curso");
+            }
         }
         
         if(e.getSource()==btMejorEstudiante){
+            try{
             JOptionPane.showMessageDialog(null,miuniversidad.mejorEstudianteCurso(miuniversidad.getCurso(comboCursoA.getItemAt(comboCursoA.getSelectedIndex()).toString())));
+            }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun curso");
+            }
         }
     }
     public static void main(String[] args) {

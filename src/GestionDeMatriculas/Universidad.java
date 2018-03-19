@@ -5,6 +5,7 @@
  */
 package GestionDeMatriculas;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Jesús Ramírez
@@ -16,8 +17,23 @@ public class Universidad {
 public Universidad(){
 }
 
-public void agregarCurso(Curso curso){
-    cursos.add(curso);
+public void agregarCurso(Curso curso)throws MyException{
+    boolean existe=true;
+    if(curso.getCodigo().isEmpty()||Integer.toString(curso.getCreditos()).isEmpty()||curso.getNombre().isEmpty()){
+        throw new MyException("Hay Campos que no se han llenado");
+    }else{
+        for (int i=0; i< cursos.size(); i++){
+            Curso cursoA= (Curso) cursos.get(i);
+            if(curso.getNombre().equals(cursoA.getNombre())){
+                JOptionPane.showMessageDialog(null, "Ya existe un curso con el mismo nombre");
+                existe=false;
+            }
+        }
+        if(existe){
+            cursos.add(curso);
+        }
+    }
+    
 }
 
 public Curso getCurso(String nombre){
@@ -37,7 +53,12 @@ public String listarEstudiantesCurso(Curso curso){
 }
 
 public void matricularEstudianteCurso(Curso curso, Estudiante estudiante){
+    try{
     curso.matricularEstudiante(estudiante);
+    }
+    catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Hay Campos que no se han llenado");
+    }
 }
 
 public void asignarNotaCurso(String codigo, Curso curso, double nota){
@@ -46,7 +67,7 @@ public void asignarNotaCurso(String codigo, Curso curso, double nota){
         
 }
 
-public double promedioEstudianteCurso(Curso curso){
+public String promedioEstudianteCurso(Curso curso){
     return curso.promedioEstudiantes();
 }
 
@@ -61,5 +82,12 @@ public int numeroCursos(){
     }
     return respuesta;
 }
+public class MyException extends Exception{
+        public MyException(){
+        }
+        public MyException(String mensaje){
+            super(mensaje);
+        }
+    }
 }
 
