@@ -112,134 +112,134 @@ public class AhorcadoGUI extends JFrame{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource().equals(btA)){
-                miJuego.ingresarLetra("a", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("a", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
         }
         if(ae.getSource().equals(btB)){
-                miJuego.ingresarLetra("b", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("b", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
         }
         if(ae.getSource().equals(btC)){
-                miJuego.ingresarLetra("c", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("c", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btD)){
-                miJuego.ingresarLetra("d", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("d", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btE)){
-                miJuego.ingresarLetra("e", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("e", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btF)){
-                miJuego.ingresarLetra("f", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("f", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btG)){
-                miJuego.ingresarLetra("g", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("g", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btH)){
-                miJuego.ingresarLetra("h", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("h", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btI)){
-                miJuego.ingresarLetra("i", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("i", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btJ)){
-                miJuego.ingresarLetra("j", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("j", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btK)){
-                miJuego.ingresarLetra("k", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("k", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btL)){
-                miJuego.ingresarLetra("l", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("l", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btM)){
-                miJuego.ingresarLetra("m", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("m", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btN)){
-                miJuego.ingresarLetra("n", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("n", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btO)){
-                miJuego.ingresarLetra("o", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("o", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btP)){
-                miJuego.ingresarLetra("p", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("p", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btQ)){
-                miJuego.ingresarLetra("q", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("q", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btR)){
-                miJuego.ingresarLetra("r", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("r", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btS)){
-                miJuego.ingresarLetra("s", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("s", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btT)){
-                miJuego.ingresarLetra("t", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("t", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btU)){
-                miJuego.ingresarLetra("u", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("u", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btV)){
-                miJuego.ingresarLetra("v", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("v", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btW)){
-                miJuego.ingresarLetra("w", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("w", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btX)){
-                miJuego.ingresarLetra("x", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("x", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btY)){
-                miJuego.ingresarLetra("y", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("y", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
         if(ae.getSource().equals(btZ)){
-                miJuego.ingresarLetra("z", palabraAux);
-                palabraOculta=miJuego.getPalabra();
-                areaPalabra.setText(palabraOculta);
+                palabraOculta=miJuego.ingresarLetra("z", palabraAux);
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
          }
        }
        
@@ -376,5 +376,5 @@ public class AhorcadoGUI extends JFrame{
         miapp.setVisible(true);
         
     }
-    
+   
 }

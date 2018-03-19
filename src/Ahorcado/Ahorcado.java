@@ -85,46 +85,69 @@ public class Ahorcado {
     public String ocultarPalabra(String palabra){
         String resultado="";
         for(int i=0;i<palabra.length();i++){
-            if(!(" ".equals(palabra.substring(i, i+1)))){
-                resultado+="_ ";
+                resultado+="-";
             }
-            else{
-                resultado+="  ";
-            }
-        }
         return resultado;
     }
     
     
-    public void ingresarLetra(String letra, String palabra){
+    public String ingresarLetra(String letra, String palabra){
         String respuesta="";
         if(palabra.contains(letra)){
-            if(palabra.contains("_ ")){
-                for(int i=0;i<palabra.length();i++){
-                    if(letra.equals(palabra.substring(i,i+1))){
+            if(this.palabra.contains("-")){
+                for(int i=0;i<this.palabra.length();i++){
+                    if((letra.toLowerCase().equals(palabra.substring(i,i+1)))||(letra.toUpperCase().equals(palabra.substring(i,i+1)))){
                         respuesta+=letra;
                     }else{
-                        respuesta+=palabra.substring(i, i+1);
+                        respuesta+="-";
                     }
                 }
             }else{
-                for(int i=0;i<palabra.length();i++){
+                for(int i=0;i<this.palabra.length();i++){
                     if(letra.equals(palabra.substring(i,i+1))){
                         respuesta+=letra;
-                        if("_ ".equals(palabra.substring(i,i+1))){
-                            respuesta+=palabra.substring(i, i+1);
-                        }
                     }else{
-                    respuesta+="_ ";
+                    respuesta+="-";
                 }
             }
+                this.palabra=respuesta;
         }
         }else{
-            oportunidades-=1;
-            respuesta=this.ocultarPalabra(palabra);
-            this.cambiarEstadoImagen();
+            respuesta=this.ocultarPalabra(this.palabra);
+        }
+        return respuesta;
+    }
+    
+    public void actualizarPalabra(String ocultarRespuesta){
+        String respuesta="";
+        if(ocultarRespuesta.length()==this.palabra.length()){
+        for(int i=0;i<this.palabra.length();i++){
+            if(!(this.palabra.substring(i,i+1).equals(ocultarRespuesta.substring(i,i+1)))&&"-".equals(this.palabra.substring(i, i+1))){
+                respuesta+=ocultarRespuesta.substring(i,i+1);
+            }
+            if(!(this.palabra.substring(i,i+1).equals(ocultarRespuesta.substring(i,i+1)))&&"-".equals(ocultarRespuesta.substring(i, i+1))){
+                respuesta+=this.palabra.substring(i,i+1);
+            }
+            if(this.palabra.substring(i,i+1).equals(ocultarRespuesta.substring(i,i+1))){
+                respuesta+=ocultarRespuesta.substring(i, i+1);
+            }
         }
         this.setPalabra(respuesta);
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "El mayor es: " + " " + this.cualMayor(this.palabra, ocultarRespuesta));
+        }
+    }
+    
+    public String cualMayor(String a, String b){
+        String respuesta="";
+        if(a.length()<b.length()){
+            respuesta="OcultarRespuesta";
+        }
+        if (a.length()>b.length()){
+            respuesta="This.palabra";
+        }
+        return respuesta;
     }
     
     
