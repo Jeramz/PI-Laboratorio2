@@ -11,15 +11,16 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.lang.*;
+import java.io.FileNotFoundException;
 
 
 public class AhorcadoGUI extends JFrame{
     
     Container contenedor;
-    JLabel lbTema,lbTeclado,lbIngresarLetra,lbImagen;
+    JLabel lbTema,lbTeclado,lbIngresarLetra,lbImagen,lbOportunidades;
     JButton btA,btB,btC,btD,btE,btF,btG,btH,btI,btJ,btK,btL,btM,btN,btO,btP,btQ,btR,btS,btT,btU,btV,btW,btX,btY,btZ,btReiniciar,btIngresarLetra;
     JTextField tfIngresarLetra;
-    JPanel panelTeclado,panelTemaPalabra;
+    JPanel panelTeclado,panelTemaPalabra,panelImagenOportunidad;
     ManejadorDeEventos manejador;
     JTextArea area,areaPalabra;
     
@@ -42,6 +43,7 @@ public class AhorcadoGUI extends JFrame{
         lbTeclado=new JLabel("Teclado");
         lbIngresarLetra=new JLabel("Ingrese una letra");
         lbImagen=new JLabel(miJuego.getImagenAhorcado());
+        lbOportunidades=new JLabel("Te quedan "+ Integer.toString(miJuego.getOportunidades()) + " oportunidades");
         
         btA=new JButton("A");btA.setBackground(Color.cyan);btB=new JButton("B");btB.setBackground(Color.cyan);
         btC=new JButton("C");btC.setBackground(Color.cyan);btD=new JButton("D");btD.setBackground(Color.cyan);
@@ -103,6 +105,7 @@ public class AhorcadoGUI extends JFrame{
         
         contenedor.add(panelTemaPalabra);
         contenedor.add(lbImagen);
+        contenedor.add(lbOportunidades);
         contenedor.add(panelTeclado);
         contenedor.add(area);
         
@@ -114,29 +117,22 @@ public class AhorcadoGUI extends JFrame{
             btG.setEnabled(false);btH.setEnabled(false);btI.setEnabled(false);btJ.setEnabled(false);btK.setEnabled(false);btL.setEnabled(false);
             btM.setEnabled(false);btN.setEnabled(false);btO.setEnabled(false);btP.setEnabled(false);btQ.setEnabled(false);btR.setEnabled(false);
             btS.setEnabled(false);btT.setEnabled(false);btU.setEnabled(false);btV.setEnabled(false);btW.setEnabled(false);btX.setEnabled(false);
-            btY.setEnabled(false);btZ.setEnabled(false);btIngresarLetra.setEnabled(false);
+            btY.setEnabled(false);btZ.setEnabled(false);btIngresarLetra.setEnabled(false);tfIngresarLetra.setEnabled(true);
             
          }
-         public void restart(){
-             miJuego.setHeganado(false);
-            tema=miJuego.temaAzar();
-            miJuego.setPalabra(miJuego.palabraAzar(tema));
-            palabraOculta=miJuego.ocultarPalabra(miJuego.getPalabra());
-            palabraAux=miJuego.getPalabra();
-         }
+         
 //ActionListener
     @Override
     public void actionPerformed(ActionEvent ae) {
         
-        if(ae.getSource().equals(btReiniciar)){
-            this.restart();
-            btA.setEnabled(true);btB.setEnabled(true);btC.setEnabled(true);btD.setEnabled(true);btE.setEnabled(true);btF.setEnabled(true);
-            btG.setEnabled(true);btH.setEnabled(true);btI.setEnabled(true);btJ.setEnabled(true);btK.setEnabled(true);btL.setEnabled(true);
-            btM.setEnabled(true);btN.setEnabled(true);btO.setEnabled(true);btP.setEnabled(true);btQ.setEnabled(true);btR.setEnabled(true);
-            btS.setEnabled(true);btT.setEnabled(true);btU.setEnabled(true);btV.setEnabled(true);btW.setEnabled(true);btX.setEnabled(true);
-            btY.setEnabled(true);btZ.setEnabled(true);btIngresarLetra.setEnabled(true);
-            
-            
+        if(ae.getSource().equals(btIngresarLetra)){
+            palabraOculta=miJuego.ingresarLetra(tfIngresarLetra.getText(), palabraAux);
+                if(!(miJuego.getPalabra().contains("-"))){
+                    miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
+                }
+                miJuego.actualizarPalabra(palabraOculta);
+                areaPalabra.setText(miJuego.getPalabra());
+                tfIngresarLetra.setText("");
         }
         
         if(ae.getSource().equals(btA)){
@@ -374,15 +370,16 @@ public class AhorcadoGUI extends JFrame{
                 btZ.setEnabled(false);
          }
         lbImagen.setIcon(miJuego.getImagenAhorcado());
+        
+        lbOportunidades.setText("Te quedan "+Integer.toString(miJuego.getOportunidades())+ " oportunidades");
         if(miJuego.Victoria()){
             JOptionPane.showMessageDialog(null, "¡Has Ganado!");
             this.disabledButtons();
         }
         if(miJuego.getOportunidades()==0){
-            JOptionPane.showMessageDialog(null, "Derrota :(");
+            JOptionPane.showMessageDialog(null, "Derrota :("+ "\n La palabra era: " + palabraAux);
             this.disabledButtons();
         }
-        
        }
        
     //Mouse Listener
@@ -539,6 +536,9 @@ public class AhorcadoGUI extends JFrame{
     @Override
     public void keyTyped(KeyEvent ke) {
         area.setText("KeyType "+ke.getKeyChar());
+        if(tfIngresarLetra.getText().length()==1){
+            ke.consume();
+        }
     }
 
     @Override
@@ -552,22 +552,12 @@ public class AhorcadoGUI extends JFrame{
 
     
     public static void main(String[] args) {
-        Ahorcado miJuego;
-        miJuego=new Ahorcado();
-        String tema=miJuego.temaAzar();
-        JOptionPane.showMessageDialog(null,tema);
-        String palabra=miJuego.palabraAzar(tema);
-        String palabraOculta=miJuego.ocultarPalabra(palabra);
-        JOptionPane.showMessageDialog(null,palabraOculta);
-        String letra="a";
-        
-        JOptionPane.showMessageDialog(null,palabraOculta);
-        JOptionPane.showMessageDialog(null,miJuego.getImagenAhorcado());
         
         AhorcadoGUI miapp=new AhorcadoGUI();
-        miapp.setSize(800, 400);
+        miapp.setSize(800, 530);
         miapp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         miapp.setVisible(true);
+        
         
     }
    

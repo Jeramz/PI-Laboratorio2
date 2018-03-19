@@ -12,7 +12,7 @@ public class Ahorcado {
            palabrasTema2[]={"mercurio","venus","tierra","marte","saturno","jupiter","neptuno","urano"},
            palabrasTema3[]={"japon","brasil","rusia","colombia","canada","alemania","italia","peru"},
            palabrasTema4[]={"lavadora","televisor","microondas"," radio","plancha","tostadora","licuadora","nevera"},
-           palabrasTema5[]={"colores","tijeras","lapicero","cuaderno","cartuchera","lapiz","Compas","carpeta"};
+           palabrasTema5[]={"colores","tijeras","lapicero","cuaderno","cartuchera","lapiz","compas","carpeta"};
     int oportunidades=7;
     String palabra="";
     boolean heGanado=false;
@@ -20,9 +20,15 @@ public class Ahorcado {
     
     public Ahorcado(){
     }
+    
+    public void restartOportunidades(){
+        this.oportunidades=7;
+    }
+    
     public void setPalabra(String palabra){
         this.palabra=palabra;
     }
+    
     public String getPalabra(){
         return palabra;
     }
@@ -37,7 +43,7 @@ public class Ahorcado {
     
     public boolean Victoria(){
         boolean respuesta=false;
-        if(!(this.palabra.contains("-"))&& this.oportunidades>0){
+        if(!(this.palabra.contains("-"))&& this.oportunidades>0 && !(this.palabra.isEmpty())){
             this.heGanado=true;
             respuesta=true;
         }
@@ -142,7 +148,7 @@ public class Ahorcado {
     
     public void actualizarPalabra(String ocultarRespuesta){
         String respuesta="";
-        if(ocultarRespuesta.length()==this.palabra.length()){
+        
         for(int i=0;i<this.palabra.length();i++){
             if(!(this.palabra.toLowerCase().substring(i,i+1).equals(ocultarRespuesta.toLowerCase().substring(i,i+1)))&&"-".equals(this.palabra.substring(i, i+1))){
                 respuesta+=ocultarRespuesta.substring(i,i+1);
@@ -155,22 +161,8 @@ public class Ahorcado {
             }
         }
         this.setPalabra(respuesta);
-        
-        }else{
-            JOptionPane.showMessageDialog(null, "El mayor es: " + " " + this.cualMayor(this.palabra, ocultarRespuesta));
-        }
     }
     
-    public String cualMayor(String a, String b){
-        String respuesta="";
-        if(a.length()<b.length()){
-            respuesta="OcultarRespuesta";
-        }
-        if (a.length()>b.length()){
-            respuesta="This.palabra";
-        }
-        return respuesta;
-    }
     
     
     
