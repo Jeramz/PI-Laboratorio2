@@ -56,7 +56,7 @@ public class AhorcadoGUI extends JFrame{
         btU=new JButton("U");btU.setBackground(Color.cyan);btV=new JButton("V");btV.setBackground(Color.cyan);
         btW=new JButton("W");btW.setBackground(Color.cyan);btX=new JButton("X");btX.setBackground(Color.cyan);
         btY=new JButton("Y");btY.setBackground(Color.cyan);btZ=new JButton("Z");btZ.setBackground(Color.cyan);
-        btIngresarLetra=new JButton("Ingresar");
+        btIngresarLetra=new JButton("Ingresar");btReiniciar=new JButton("Reiniciar");
         
         tfIngresarLetra=new JTextField("");
         
@@ -68,6 +68,7 @@ public class AhorcadoGUI extends JFrame{
         btD.addActionListener(manejador);btJ.addActionListener(manejador);btP.addActionListener(manejador);btU.addActionListener(manejador);btZ.addActionListener(manejador);
         btE.addActionListener(manejador);btK.addActionListener(manejador);btQ.addActionListener(manejador);btV.addActionListener(manejador);btF.addActionListener(manejador);
         btL.addActionListener(manejador);btIngresarLetra.addActionListener(manejador);
+        btReiniciar.addActionListener(manejador);
         
         btA.addMouseListener(manejador);btG.addMouseListener(manejador);btM.addMouseListener(manejador);btR.addMouseListener(manejador);btW.addMouseListener(manejador);
         btB.addMouseListener(manejador);btH.addMouseListener(manejador);btN.addMouseListener(manejador);btS.addMouseListener(manejador);btX.addMouseListener(manejador);
@@ -108,10 +109,36 @@ public class AhorcadoGUI extends JFrame{
     }
     
      private class ManejadorDeEventos implements ActionListener, MouseListener, KeyListener{
-        
+         public void disabledButtons(){
+            btA.setEnabled(false);btB.setEnabled(false);btC.setEnabled(false);btD.setEnabled(false);btE.setEnabled(false);btF.setEnabled(false);
+            btG.setEnabled(false);btH.setEnabled(false);btI.setEnabled(false);btJ.setEnabled(false);btK.setEnabled(false);btL.setEnabled(false);
+            btM.setEnabled(false);btN.setEnabled(false);btO.setEnabled(false);btP.setEnabled(false);btQ.setEnabled(false);btR.setEnabled(false);
+            btS.setEnabled(false);btT.setEnabled(false);btU.setEnabled(false);btV.setEnabled(false);btW.setEnabled(false);btX.setEnabled(false);
+            btY.setEnabled(false);btZ.setEnabled(false);btIngresarLetra.setEnabled(false);
+            
+         }
+         public void restart(){
+             miJuego.setHeganado(false);
+            tema=miJuego.temaAzar();
+            miJuego.setPalabra(miJuego.palabraAzar(tema));
+            palabraOculta=miJuego.ocultarPalabra(miJuego.getPalabra());
+            palabraAux=miJuego.getPalabra();
+         }
 //ActionListener
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
+        if(ae.getSource().equals(btReiniciar)){
+            this.restart();
+            btA.setEnabled(true);btB.setEnabled(true);btC.setEnabled(true);btD.setEnabled(true);btE.setEnabled(true);btF.setEnabled(true);
+            btG.setEnabled(true);btH.setEnabled(true);btI.setEnabled(true);btJ.setEnabled(true);btK.setEnabled(true);btL.setEnabled(true);
+            btM.setEnabled(true);btN.setEnabled(true);btO.setEnabled(true);btP.setEnabled(true);btQ.setEnabled(true);btR.setEnabled(true);
+            btS.setEnabled(true);btT.setEnabled(true);btU.setEnabled(true);btV.setEnabled(true);btW.setEnabled(true);btX.setEnabled(true);
+            btY.setEnabled(true);btZ.setEnabled(true);btIngresarLetra.setEnabled(true);
+            
+            
+        }
+        
         if(ae.getSource().equals(btA)){
                 palabraOculta=miJuego.ingresarLetra("a", palabraAux);
                 if(!(miJuego.getPalabra().contains("-"))){
@@ -119,6 +146,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btA.setEnabled(false);
         }
         if(ae.getSource().equals(btB)){
                 palabraOculta=miJuego.ingresarLetra("b", palabraAux);
@@ -127,6 +155,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btB.setEnabled(false);
         }
         if(ae.getSource().equals(btC)){
                 palabraOculta=miJuego.ingresarLetra("c", palabraAux);
@@ -135,6 +164,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btC.setEnabled(false);
          }
         if(ae.getSource().equals(btD)){
                 palabraOculta=miJuego.ingresarLetra("d", palabraAux);
@@ -143,6 +173,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btD.setEnabled(false);
          }
         if(ae.getSource().equals(btE)){
                 palabraOculta=miJuego.ingresarLetra("e", palabraAux);
@@ -151,6 +182,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btE.setEnabled(false);
          }
         if(ae.getSource().equals(btF)){
                 palabraOculta=miJuego.ingresarLetra("f", palabraAux);
@@ -159,6 +191,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btF.setEnabled(false);
          }
         if(ae.getSource().equals(btG)){
                 palabraOculta=miJuego.ingresarLetra("g", palabraAux);
@@ -167,6 +200,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btG.setEnabled(false);
          }
         if(ae.getSource().equals(btH)){
                 palabraOculta=miJuego.ingresarLetra("h", palabraAux);
@@ -175,6 +209,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btH.setEnabled(false);
          }
         if(ae.getSource().equals(btI)){
                 palabraOculta=miJuego.ingresarLetra("i", palabraAux);
@@ -183,6 +218,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btI.setEnabled(false);
          }
         if(ae.getSource().equals(btJ)){
                 palabraOculta=miJuego.ingresarLetra("j", palabraAux);
@@ -191,6 +227,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btJ.setEnabled(false);
          }
         if(ae.getSource().equals(btK)){
                 palabraOculta=miJuego.ingresarLetra("k", palabraAux);
@@ -199,6 +236,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btK.setEnabled(false);
          }
         if(ae.getSource().equals(btL)){
                 palabraOculta=miJuego.ingresarLetra("l", palabraAux);
@@ -207,6 +245,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btL.setEnabled(false);
          }
         if(ae.getSource().equals(btM)){
                 palabraOculta=miJuego.ingresarLetra("m", palabraAux);
@@ -215,6 +254,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btM.setEnabled(false);
          }
         if(ae.getSource().equals(btN)){
                 palabraOculta=miJuego.ingresarLetra("n", palabraAux);
@@ -223,6 +263,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btN.setEnabled(false);
          }
         if(ae.getSource().equals(btO)){
                 palabraOculta=miJuego.ingresarLetra("o", palabraAux);
@@ -231,6 +272,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btO.setEnabled(false);
          }
         if(ae.getSource().equals(btP)){
                 palabraOculta=miJuego.ingresarLetra("p", palabraAux);
@@ -239,6 +281,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btP.setEnabled(false);
          }
         if(ae.getSource().equals(btQ)){
                 palabraOculta=miJuego.ingresarLetra("q", palabraAux);
@@ -247,6 +290,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btQ.setEnabled(false);
          }
         if(ae.getSource().equals(btR)){
                 palabraOculta=miJuego.ingresarLetra("r", palabraAux);
@@ -255,6 +299,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btR.setEnabled(false);
          }
         if(ae.getSource().equals(btS)){
                 palabraOculta=miJuego.ingresarLetra("s", palabraAux);
@@ -263,6 +308,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btS.setEnabled(false);
          }
         if(ae.getSource().equals(btT)){
                 palabraOculta=miJuego.ingresarLetra("t", palabraAux);
@@ -271,6 +317,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btT.setEnabled(false);
          }
         if(ae.getSource().equals(btU)){
                 palabraOculta=miJuego.ingresarLetra("u", palabraAux);
@@ -279,6 +326,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btU.setEnabled(false);
          }
         if(ae.getSource().equals(btV)){
                 palabraOculta=miJuego.ingresarLetra("v", palabraAux);
@@ -287,6 +335,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btV.setEnabled(false);
          }
         if(ae.getSource().equals(btW)){
                 palabraOculta=miJuego.ingresarLetra("w", palabraAux);
@@ -295,6 +344,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btW.setEnabled(false);
          }
         if(ae.getSource().equals(btX)){
                 palabraOculta=miJuego.ingresarLetra("x", palabraAux);
@@ -303,6 +353,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btX.setEnabled(false);
          }
         if(ae.getSource().equals(btY)){
                 palabraOculta=miJuego.ingresarLetra("y", palabraAux);
@@ -311,6 +362,7 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btY.setEnabled(false);
          }
         if(ae.getSource().equals(btZ)){
                 palabraOculta=miJuego.ingresarLetra("z", palabraAux);
@@ -319,7 +371,18 @@ public class AhorcadoGUI extends JFrame{
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
+                btZ.setEnabled(false);
          }
+        lbImagen.setIcon(miJuego.getImagenAhorcado());
+        if(miJuego.Victoria()){
+            JOptionPane.showMessageDialog(null, "¡Has Ganado!");
+            this.disabledButtons();
+        }
+        if(miJuego.getOportunidades()==0){
+            JOptionPane.showMessageDialog(null, "Derrota :(");
+            this.disabledButtons();
+        }
+        
        }
        
     //Mouse Listener
@@ -330,82 +393,134 @@ public class AhorcadoGUI extends JFrame{
     @Override
     public void mouseClicked(MouseEvent me) {
         if(me.getSource().equals(btA)){
+        if(!miJuego.getHeGanado()){
         btA.setBackground(Color.red);
         }
+        }
         if(me.getSource().equals(btB)){
+        if(!miJuego.getHeGanado()){
         btB.setBackground(Color.red);
         }
+        }
         if(me.getSource().equals(btC)){
+            if(!miJuego.getHeGanado()){
         btC.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btD)){
+            if(!miJuego.getHeGanado()){
         btD.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btE)){
+            if(!miJuego.getHeGanado()){
         btE.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btF)){
+            if(!miJuego.getHeGanado()){
         btF.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btG)){
+            if(!miJuego.getHeGanado()){
         btG.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btH)){
+            if(!miJuego.getHeGanado()){
         btH.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btI)){
+            if(!miJuego.getHeGanado()){
         btI.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btJ)){
+            if(!miJuego.getHeGanado()){
         btJ.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btK)){
+            if(!miJuego.getHeGanado()){
         btK.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btL)){
+            if(!miJuego.getHeGanado()){
         btL.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btM)){
+            if(!miJuego.getHeGanado()){
         btM.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btN)){
+            if(!miJuego.getHeGanado()){
         btN.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btO)){
+            if(!miJuego.getHeGanado()){
         btO.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btP)){
+            if(!miJuego.getHeGanado()){
         btP.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btQ)){
+            if(!miJuego.getHeGanado()){
         btQ.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btR)){
+            if(!miJuego.getHeGanado()){
         btR.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btS)){
+            if(!miJuego.getHeGanado()){
         btS.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btT)){
+            if(!miJuego.getHeGanado()){
         btT.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btU)){
+            if(!miJuego.getHeGanado()){
         btU.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btV)){
+            if(!miJuego.getHeGanado()){
         btV.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btW)){
+            if(!miJuego.getHeGanado()){
         btW.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btX)){
+            if(!miJuego.getHeGanado()){
         btX.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btY)){
+            if(!miJuego.getHeGanado()){
         btY.setBackground(Color.red);
+            }
         }
         if(me.getSource().equals(btZ)){
+            if(!miJuego.getHeGanado()){
         btZ.setBackground(Color.red);
+            }
         }
     }
     @Override

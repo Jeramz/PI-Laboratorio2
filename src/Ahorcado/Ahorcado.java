@@ -8,13 +8,14 @@ package Ahorcado;
 import javax.swing.*;
 public class Ahorcado {
     String temas[]={"Animales","Planetas","Paises","Electrodomesticos","Utiles escolares"};
-    String palabrasTema1[]={"Serpiente","Gorila","Águila","Perro","Oso","Vaca","Elefante","Cocodrilo"}, 
-           palabrasTema2[]={"Mercurio","Venus","Tierra","Marte","Saturno","Jupiter","Neptuno","Urano"},
-           palabrasTema3[]={"Japon","Brasil","Rusia","Colombia","Canada","Alemania","Italia","Peru"},
-           palabrasTema4[]={"Lavadora","Televisor","Microondas"," Radio","Plancha","Tostadora","Licuadora","Nevera"},
-           palabrasTema5[]={"Colores","Tijeras","Lapicero","Cuaderno","Cartuchera","Lapiz","Compas","Carpeta"};
+    String palabrasTema1[]={"serpiente","gorila","aguila","perro","oso","vaca","elefante","cocodrilo"}, 
+           palabrasTema2[]={"mercurio","venus","tierra","marte","saturno","jupiter","neptuno","urano"},
+           palabrasTema3[]={"japon","brasil","rusia","colombia","canada","alemania","italia","peru"},
+           palabrasTema4[]={"lavadora","televisor","microondas"," radio","plancha","tostadora","licuadora","nevera"},
+           palabrasTema5[]={"colores","tijeras","lapicero","cuaderno","cartuchera","lapiz","Compas","carpeta"};
     int oportunidades=7;
     String palabra="";
+    boolean heGanado=false;
     ImageIcon imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado0.jpg"));
     
     public Ahorcado(){
@@ -25,6 +26,26 @@ public class Ahorcado {
     public String getPalabra(){
         return palabra;
     }
+    
+    public boolean getHeGanado(){
+        return this.heGanado;
+    }
+    
+    public void setHeganado(boolean heGanado){
+    this.heGanado=heGanado;
+    }
+    
+    public boolean Victoria(){
+        boolean respuesta=false;
+        if(!(this.palabra.contains("-"))&& this.oportunidades>0){
+            this.heGanado=true;
+            respuesta=true;
+        }
+        return respuesta;
+    }
+    public int getOportunidades(){
+        return oportunidades;
+    }
   
     
     public ImageIcon getImagenAhorcado(){
@@ -32,31 +53,30 @@ public class Ahorcado {
     }
     
     public void cambiarEstadoImagen(){
-        switch(oportunidades){
-            case 0:
-                imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado7.jpg"));
-                break;
-            case 1:
-                imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado6.jpg"));
-                break;
-            case 2:
-                imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado5.jpg"));
-                break;
-            case 3:
-                imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado4.jpg"));
-                break;
-            case 4:
-                imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado3.jpg"));
-                break;
-            case 5:
-                imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado2.jpg"));
-                break;
-            case 6:
-                imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado1.jpg"));
-                break;
-            
+        ImageIcon respuesta=new ImageIcon();
+        if(oportunidades==0){
+                respuesta=new ImageIcon(getClass().getResource("Ahorcado7.jpg"));
         }
-    }
+        if(oportunidades==1){
+                respuesta=new ImageIcon(getClass().getResource("Ahorcado6.jpg"));
+        }
+        if(oportunidades==2){
+                respuesta=new ImageIcon(getClass().getResource("Ahorcado5.jpg"));
+        }
+        if(oportunidades==3){
+                respuesta=new ImageIcon(getClass().getResource("Ahorcado4.jpg"));
+        }
+        if(oportunidades==4){
+                respuesta=new ImageIcon(getClass().getResource("Ahorcado3.jpg"));
+        }
+        if(oportunidades==5){
+                respuesta=new ImageIcon(getClass().getResource("Ahorcado2.jpg"));
+        }
+        if(oportunidades==6){
+                respuesta=new ImageIcon(getClass().getResource("Ahorcado1.jpg"));
+        }
+         this.imgAhorcado=respuesta;   
+        }
     
     public String temaAzar(){
         return temas[(int)(Math.random()*4)+1];
@@ -114,6 +134,8 @@ public class Ahorcado {
         }
         }else{
             respuesta=this.ocultarPalabra(this.palabra);
+            this.oportunidades-=1;
+            this.cambiarEstadoImagen();
         }
         return respuesta;
     }
@@ -122,13 +144,13 @@ public class Ahorcado {
         String respuesta="";
         if(ocultarRespuesta.length()==this.palabra.length()){
         for(int i=0;i<this.palabra.length();i++){
-            if(!(this.palabra.substring(i,i+1).equals(ocultarRespuesta.substring(i,i+1)))&&"-".equals(this.palabra.substring(i, i+1))){
+            if(!(this.palabra.toLowerCase().substring(i,i+1).equals(ocultarRespuesta.toLowerCase().substring(i,i+1)))&&"-".equals(this.palabra.substring(i, i+1))){
                 respuesta+=ocultarRespuesta.substring(i,i+1);
             }
-            if(!(this.palabra.substring(i,i+1).equals(ocultarRespuesta.substring(i,i+1)))&&"-".equals(ocultarRespuesta.substring(i, i+1))){
+            if(!(this.palabra.toLowerCase().substring(i,i+1).equals(ocultarRespuesta.toLowerCase().substring(i,i+1)))&&"-".equals(ocultarRespuesta.substring(i, i+1))){
                 respuesta+=this.palabra.substring(i,i+1);
             }
-            if(this.palabra.substring(i,i+1).equals(ocultarRespuesta.substring(i,i+1))){
+            if(this.palabra.toLowerCase().substring(i,i+1).equals(ocultarRespuesta.toLowerCase().substring(i,i+1))){
                 respuesta+=ocultarRespuesta.substring(i, i+1);
             }
         }
