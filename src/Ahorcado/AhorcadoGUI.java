@@ -138,6 +138,10 @@ public class AhorcadoGUI extends JFrame{
         contenedor.add(panelTeclado);
         contenedor.add(area);
         
+        LookAndFeelInfo[] lista = UIManager.getInstalledLookAndFeels();
+	for (int i = 0; i < lista.length; i++) {
+	    System.out.println(lista[i].getClassName());
+	}
     }
     //Clase que maneja los eventos
      private class ManejadorDeEventos implements ActionListener, MouseListener, KeyListener{
@@ -769,7 +773,17 @@ public class AhorcadoGUI extends JFrame{
 }
      
     public static void main(String[] args) {
-        
+        LookAndFeelInfo[] lista = UIManager.getInstalledLookAndFeels();
+	for (int i = 0; i < lista.length; i++) {
+	    System.out.println(lista[i].getClassName());
+	}
+
+      try {
+         UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+     } 
+      catch(Exception e){
+          System.out.println("Error...");
+     }
         AhorcadoGUI miapp=new AhorcadoGUI();
         miapp.setSize(850, 530);
         miapp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

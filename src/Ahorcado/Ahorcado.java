@@ -96,25 +96,25 @@ public class Ahorcado {
         }
     
     public String temaAzar(){
-        return temas[(int)(Math.random()*4)+1];
+        return temas[(int)(Math.random()*temas.length-1)];
     }
     
     public String palabraAzar(String tema){
         String resultado="";
         if(temas[0].equals(tema)){
-            resultado=palabrasTema1[(int)(Math.random()*7)+1];
+            resultado=palabrasTema1[(int)(Math.random()*7)];
         }
         if(temas[1].equals(tema)){
-            resultado=palabrasTema2[(int)(Math.random()*7)+1];
+            resultado=palabrasTema2[(int)(Math.random()*7)];
         }
         if(temas[2].equals(tema)){
-            resultado=palabrasTema3[(int)(Math.random()*7)+1];
+            resultado=palabrasTema3[(int)(Math.random()*7)];
         }
         if(temas[3].equals(tema)){
-            resultado=palabrasTema4[(int)(Math.random()*7)+1];
+            resultado=palabrasTema4[(int)(Math.random()*7)];
         }
         if(temas[4].equals(tema)){
-            resultado=palabrasTema5[(int)(Math.random()*7)+1];
+            resultado=palabrasTema5[(int)(Math.random()*7)];
         }
         return resultado;
     }
