@@ -23,6 +23,9 @@ public class AhorcadoGUI extends JFrame{
     JPanel panelTeclado,panelTemaPalabra,panelImagenOportunidad;
     ManejadorDeEventos manejador;
     JTextArea area,areaPalabra;
+    JMenuBar menuBar;
+    JMenu menu;
+    JMenuItem itemInfo,itemRestart,itemExit;
     
     Ahorcado miJuego=new Ahorcado();
     String tema=miJuego.temaAzar();
@@ -31,6 +34,12 @@ public class AhorcadoGUI extends JFrame{
     
     public AhorcadoGUI(){
         miJuego.setPalabra(miJuego.palabraAzar(tema));
+        try{
+        miJuego.cambiarEstadoImagen();
+        }
+        catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar la imagen del ahorcado :(\n\n Imagen no encontrada");
+        }
         palabraOculta=miJuego.ocultarPalabra(miJuego.getPalabra());
         palabraAux=miJuego.getPalabra();
         
@@ -38,12 +47,15 @@ public class AhorcadoGUI extends JFrame{
         areaPalabra=new JTextArea(0,10);
         areaPalabra.setText(palabraOculta);
         areaPalabra.setEditable(false);
-        lbTema=new JLabel("Tema: " + tema);
+        lbTema=new JLabel();
+        lbTema.setText("Tema: " + tema);
         
         lbTeclado=new JLabel("Teclado");
         lbIngresarLetra=new JLabel("Ingrese una letra");
-        lbImagen=new JLabel(miJuego.getImagenAhorcado());
-        lbOportunidades=new JLabel("Te quedan "+ Integer.toString(miJuego.getOportunidades()) + " oportunidades");
+        lbImagen=new JLabel();
+        lbImagen.setIcon(miJuego.getImagenAhorcado());
+        lbOportunidades=new JLabel();
+        lbOportunidades.setText("Te quedan "+ Integer.toString(miJuego.getOportunidades()) + " oportunidades");
         
         btA=new JButton("A");btA.setBackground(Color.cyan);btB=new JButton("B");btB.setBackground(Color.cyan);
         btC=new JButton("C");btC.setBackground(Color.cyan);btD=new JButton("D");btD.setBackground(Color.cyan);
@@ -62,6 +74,20 @@ public class AhorcadoGUI extends JFrame{
         
         tfIngresarLetra=new JTextField("");
         
+        menuBar=new JMenuBar();
+        this.setJMenuBar(menuBar);
+        
+        menu=new JMenu("Menu");
+        menuBar.add(menu);
+        
+        itemInfo=new JMenuItem("Información");
+        itemRestart=new JMenuItem("Reiniciar");
+        itemExit=new JMenuItem("cerrar");
+        
+        menu.add(itemInfo);
+        menu.add(itemRestart);
+        menu.add(itemExit);
+        
         manejador = new ManejadorDeEventos();
         
         btA.addActionListener(manejador);btG.addActionListener(manejador);btM.addActionListener(manejador);btR.addActionListener(manejador);btW.addActionListener(manejador);
@@ -70,7 +96,7 @@ public class AhorcadoGUI extends JFrame{
         btD.addActionListener(manejador);btJ.addActionListener(manejador);btP.addActionListener(manejador);btU.addActionListener(manejador);btZ.addActionListener(manejador);
         btE.addActionListener(manejador);btK.addActionListener(manejador);btQ.addActionListener(manejador);btV.addActionListener(manejador);btF.addActionListener(manejador);
         btL.addActionListener(manejador);btIngresarLetra.addActionListener(manejador);
-        btReiniciar.addActionListener(manejador);
+        btReiniciar.addActionListener(manejador);itemInfo.addActionListener(manejador);itemRestart.addActionListener(manejador);itemExit.addActionListener(manejador);
         
         btA.addMouseListener(manejador);btG.addMouseListener(manejador);btM.addMouseListener(manejador);btR.addMouseListener(manejador);btW.addMouseListener(manejador);
         btB.addMouseListener(manejador);btH.addMouseListener(manejador);btN.addMouseListener(manejador);btS.addMouseListener(manejador);btX.addMouseListener(manejador);
@@ -112,13 +138,43 @@ public class AhorcadoGUI extends JFrame{
     }
     
      private class ManejadorDeEventos implements ActionListener, MouseListener, KeyListener{
+         public void enableButtons(){
+            btA.setEnabled(true);btB.setEnabled(true);btC.setEnabled(true);btD.setEnabled(true);btE.setEnabled(true);btF.setEnabled(true);
+            btG.setEnabled(true);btH.setEnabled(true);btI.setEnabled(true);btJ.setEnabled(true);btK.setEnabled(true);btL.setEnabled(true);
+            btM.setEnabled(true);btN.setEnabled(true);btO.setEnabled(true);btP.setEnabled(true);btQ.setEnabled(true);btR.setEnabled(true);
+            btS.setEnabled(true);btT.setEnabled(true);btU.setEnabled(true);btV.setEnabled(true);btW.setEnabled(true);btX.setEnabled(true);
+            btY.setEnabled(true);btZ.setEnabled(true);btIngresarLetra.setEnabled(true);tfIngresarLetra.setEnabled(true);
+            btA.setBackground(Color.cyan);btB.setBackground(Color.cyan);
+            btC.setBackground(Color.cyan);btD.setBackground(Color.cyan);
+            btE.setBackground(Color.cyan);btF.setBackground(Color.cyan);
+            btG.setBackground(Color.cyan);btH.setBackground(Color.cyan);
+            btI.setBackground(Color.cyan);btJ.setBackground(Color.cyan);
+            btK.setBackground(Color.cyan);btL.setBackground(Color.cyan);
+            btM.setBackground(Color.cyan);btN.setBackground(Color.cyan);
+            btO.setBackground(Color.cyan);btP.setBackground(Color.cyan);
+            btQ.setBackground(Color.cyan);btR.setBackground(Color.cyan);
+            btS.setBackground(Color.cyan);btT.setBackground(Color.cyan);
+            btU.setBackground(Color.cyan);btV.setBackground(Color.cyan);
+            btW.setBackground(Color.cyan);btX.setBackground(Color.cyan);
+            btY.setBackground(Color.cyan);btZ.setBackground(Color.cyan);
+         }
          public void disabledButtons(){
             btA.setEnabled(false);btB.setEnabled(false);btC.setEnabled(false);btD.setEnabled(false);btE.setEnabled(false);btF.setEnabled(false);
             btG.setEnabled(false);btH.setEnabled(false);btI.setEnabled(false);btJ.setEnabled(false);btK.setEnabled(false);btL.setEnabled(false);
             btM.setEnabled(false);btN.setEnabled(false);btO.setEnabled(false);btP.setEnabled(false);btQ.setEnabled(false);btR.setEnabled(false);
             btS.setEnabled(false);btT.setEnabled(false);btU.setEnabled(false);btV.setEnabled(false);btW.setEnabled(false);btX.setEnabled(false);
-            btY.setEnabled(false);btZ.setEnabled(false);btIngresarLetra.setEnabled(false);tfIngresarLetra.setEnabled(true);
+            btY.setEnabled(false);btZ.setEnabled(false);btIngresarLetra.setEnabled(false);tfIngresarLetra.setEnabled(false);
             
+         }
+         public void terminarJuego(){
+             if(miJuego.Victoria()){
+            JOptionPane.showMessageDialog(null, "¡Has Ganado!");
+            this.disabledButtons();
+        }
+        if(miJuego.getOportunidades()==0){
+            JOptionPane.showMessageDialog(null, "Derrota :("+ "\n La palabra era: " + palabraAux);
+            this.disabledButtons();
+        }
          }
          
 //ActionListener
@@ -126,259 +182,415 @@ public class AhorcadoGUI extends JFrame{
     public void actionPerformed(ActionEvent ae) {
         
         if(ae.getSource().equals(btIngresarLetra)){
+            try{
             palabraOculta=miJuego.ingresarLetra(tfIngresarLetra.getText(), palabraAux);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+            }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 tfIngresarLetra.setText("");
+                this.terminarJuego();
         }
         
         if(ae.getSource().equals(btA)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("a", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btA.setEnabled(false);
+                this.terminarJuego();
         }
         if(ae.getSource().equals(btB)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("b", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btB.setEnabled(false);
+                this.terminarJuego();
         }
         if(ae.getSource().equals(btC)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("c", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btC.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btD)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("d", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btD.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btE)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("e", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btE.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btF)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("f", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btF.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btG)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("g", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btG.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btH)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("h", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btH.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btI)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("i", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btI.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btJ)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("j", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btJ.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btK)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("k", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btK.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btL)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("l", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btL.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btM)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("m", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btM.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btN)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("n", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btN.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btO)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("o", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btO.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btP)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("p", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btP.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btQ)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("q", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btQ.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btR)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("r", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btR.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btS)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("s", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btS.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btT)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("t", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btT.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btU)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("u", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btU.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btV)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("v", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btV.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btW)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("w", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btW.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btX)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("x", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btX.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btY)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("y", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btY.setEnabled(false);
+                this.terminarJuego();
          }
         if(ae.getSource().equals(btZ)){
+                try{
                 palabraOculta=miJuego.ingresarLetra("z", palabraAux);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
                 }
                 miJuego.actualizarPalabra(palabraOculta);
                 areaPalabra.setText(miJuego.getPalabra());
                 btZ.setEnabled(false);
+                this.terminarJuego();
          }
         lbImagen.setIcon(miJuego.getImagenAhorcado());
         
         lbOportunidades.setText("Te quedan "+Integer.toString(miJuego.getOportunidades())+ " oportunidades");
-        if(miJuego.Victoria()){
-            JOptionPane.showMessageDialog(null, "¡Has Ganado!");
-            this.disabledButtons();
+        
+        if(ae.getSource().equals(itemExit)){
+            System.exit(0);
         }
-        if(miJuego.getOportunidades()==0){
-            JOptionPane.showMessageDialog(null, "Derrota :("+ "\n La palabra era: " + palabraAux);
-            this.disabledButtons();
+        if(ae.getSource().equals(itemInfo)){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una letra, ya sea por medio del teclado virtual o fisico,\n"
+                                              + "si la letra ingresada hace parte de la palabra, se revela las posiciones\n"
+                                              + "en las que se encuentra. El juego se gana si se revela la palabra completa\n"
+                                              + "Para ganar el juego, el jugador cuenta con 7 oportunidades");
+        }
+        if(ae.getSource().equals(itemRestart)){
+            tema=miJuego.temaAzar();
+            miJuego.setPalabra(miJuego.palabraAzar(tema));
+            miJuego.restartOportunidades();
+            lbOportunidades.setText("Te quedan "+ miJuego.getOportunidades() + " oportunidades");
+            try{
+                miJuego.cambiarEstadoImagen();
+            }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar la imagen del ahorcado :(\n\n Imagen no encontrada");
+            }
+            palabraOculta=miJuego.ocultarPalabra(miJuego.getPalabra());
+            areaPalabra.setText(palabraOculta);
+            palabraAux=miJuego.getPalabra();
+            lbTema.setText("Tema: " + tema);
+            lbImagen.setIcon(miJuego.getImagenAhorcado());
+            this.enableButtons();
+            
         }
        }
        
@@ -554,7 +766,7 @@ public class AhorcadoGUI extends JFrame{
     public static void main(String[] args) {
         
         AhorcadoGUI miapp=new AhorcadoGUI();
-        miapp.setSize(800, 530);
+        miapp.setSize(850, 530);
         miapp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         miapp.setVisible(true);
         

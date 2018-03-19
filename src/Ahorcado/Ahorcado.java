@@ -16,7 +16,7 @@ public class Ahorcado {
     int oportunidades=7;
     String palabra="";
     boolean heGanado=false;
-    ImageIcon imgAhorcado=new ImageIcon(getClass().getResource("Ahorcado0.jpg"));
+    ImageIcon imgAhorcado;
     
     public Ahorcado(){
     }
@@ -81,6 +81,9 @@ public class Ahorcado {
         if(oportunidades==6){
                 respuesta=new ImageIcon(getClass().getResource("Ahorcado1.jpg"));
         }
+        if(oportunidades==7){
+                respuesta=new ImageIcon(getClass().getResource("Ahorcado0.jpg"));
+        }
          this.imgAhorcado=respuesta;   
         }
     
@@ -117,8 +120,11 @@ public class Ahorcado {
     }
     
     
-    public String ingresarLetra(String letra, String palabra){
+    public String ingresarLetra(String letra, String palabra)throws MyException{
         String respuesta="";
+        if(Integer.toString(1).equals(letra)||Integer.toString(2).equals(letra)||Integer.toString(3).equals(letra)||Integer.toString(4).equals(letra)||Integer.toString(5).equals(letra)||Integer.toString(6).equals(letra)||Integer.toString(7).equals(letra)||Integer.toString(8).equals(letra)||Integer.toString(9).equals(letra)||Integer.toString(0).equals(letra)){
+            throw new MyException("Debe ingresar una letra (a-z)");
+        }else{
         if(palabra.contains(letra)){
             if(this.palabra.contains("-")){
                 for(int i=0;i<this.palabra.length();i++){
@@ -141,9 +147,15 @@ public class Ahorcado {
         }else{
             respuesta=this.ocultarPalabra(this.palabra);
             this.oportunidades-=1;
+            try{
             this.cambiarEstadoImagen();
+            }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar la imagen del ahorcado :(\n\n Imagen no encontrada");
+            }
         }
         return respuesta;
+        }
     }
     
     public void actualizarPalabra(String ocultarRespuesta){
@@ -163,7 +175,13 @@ public class Ahorcado {
         this.setPalabra(respuesta);
     }
     
-    
+    public class MyException extends Exception{
+        public MyException(){
+        }
+        public MyException(String mensaje){
+            super(mensaje);
+        }
+    }
     
     
 }

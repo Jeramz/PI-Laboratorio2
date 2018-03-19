@@ -163,6 +163,7 @@ public class GestionMatriculasGUI extends JFrame implements ActionListener{
         
     }
     
+    
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==btAgregarCurso){
             String codigoCurso=tfCodigoCurso.getText();
