@@ -13,7 +13,6 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import java.lang.*;
 import java.io.FileNotFoundException;
 
-
 public class AhorcadoGUI extends JFrame{
     
     Container contenedor;
@@ -32,6 +31,7 @@ public class AhorcadoGUI extends JFrame{
     String palabraOculta;
     String palabraAux;
     
+    //Constructor
     public AhorcadoGUI(){
         miJuego.setPalabra(miJuego.palabraAzar(tema));
         try{
@@ -42,21 +42,21 @@ public class AhorcadoGUI extends JFrame{
         }
         palabraOculta=miJuego.ocultarPalabra(miJuego.getPalabra());
         palabraAux=miJuego.getPalabra();
-        
+        //Inicializar Area Texto
         area=new JTextArea(5,10);
         areaPalabra=new JTextArea(0,10);
         areaPalabra.setText(palabraOculta);
         areaPalabra.setEditable(false);
+        //Inicializar Labels
         lbTema=new JLabel();
         lbTema.setText("Tema: " + tema);
-        
         lbTeclado=new JLabel("Teclado");
         lbIngresarLetra=new JLabel("Ingrese una letra");
         lbImagen=new JLabel();
         lbImagen.setIcon(miJuego.getImagenAhorcado());
         lbOportunidades=new JLabel();
         lbOportunidades.setText("Te quedan "+ Integer.toString(miJuego.getOportunidades()) + " oportunidades");
-        
+        //Inicializar Botones
         btA=new JButton("A");btA.setBackground(Color.cyan);btB=new JButton("B");btB.setBackground(Color.cyan);
         btC=new JButton("C");btC.setBackground(Color.cyan);btD=new JButton("D");btD.setBackground(Color.cyan);
         btE=new JButton("E");btE.setBackground(Color.cyan);btF=new JButton("F");btF.setBackground(Color.cyan);
@@ -72,24 +72,26 @@ public class AhorcadoGUI extends JFrame{
         btY=new JButton("Y");btY.setBackground(Color.cyan);btZ=new JButton("Z");btZ.setBackground(Color.cyan);
         btIngresarLetra=new JButton("Ingresar");btReiniciar=new JButton("Reiniciar");
         
+        //Inicializar TextField
         tfIngresarLetra=new JTextField("");
         
+        //Inicializar MenuBar
         menuBar=new JMenuBar();
         this.setJMenuBar(menuBar);
-        
+        //Inicializar Menu
         menu=new JMenu("Menu");
         menuBar.add(menu);
-        
+        //Inicializar Menu Item
         itemInfo=new JMenuItem("Información");
         itemRestart=new JMenuItem("Reiniciar");
         itemExit=new JMenuItem("cerrar");
-        
+        //Agregar MenuItems al Menu
         menu.add(itemInfo);
         menu.add(itemRestart);
         menu.add(itemExit);
-        
+        //Inicializar Manejador
         manejador = new ManejadorDeEventos();
-        
+        //Agregar Listeners
         btA.addActionListener(manejador);btG.addActionListener(manejador);btM.addActionListener(manejador);btR.addActionListener(manejador);btW.addActionListener(manejador);
         btB.addActionListener(manejador);btH.addActionListener(manejador);btN.addActionListener(manejador);btS.addActionListener(manejador);btX.addActionListener(manejador);
         btC.addActionListener(manejador);btI.addActionListener(manejador);btO.addActionListener(manejador);btT.addActionListener(manejador);btY.addActionListener(manejador);
@@ -106,13 +108,13 @@ public class AhorcadoGUI extends JFrame{
         btL.addMouseListener(manejador);
         
         tfIngresarLetra.addKeyListener(manejador);
-        
+        //Inicializar Panels
         panelTeclado=new JPanel();
         panelTeclado.setLayout(new GridLayout(4,7));
         
         panelTemaPalabra=new JPanel();
         panelTemaPalabra.setLayout(new GridLayout(4,1));
-        
+        //Agregar A los Panels
         panelTeclado.add(btA);panelTeclado.add(btB);panelTeclado.add(btC);panelTeclado.add(btD);panelTeclado.add(btE);
         panelTeclado.add(btF);panelTeclado.add(btG);panelTeclado.add(btH);panelTeclado.add(btI);panelTeclado.add(btJ);
         panelTeclado.add(btK);panelTeclado.add(btL);panelTeclado.add(btM);panelTeclado.add(btN);panelTeclado.add(btO);
@@ -126,6 +128,7 @@ public class AhorcadoGUI extends JFrame{
         panelTemaPalabra.add(tfIngresarLetra);
         panelTemaPalabra.add(btIngresarLetra);
         
+        //Inicializar Contenedor
         contenedor = getContentPane(); //Crea el contenedor 
         contenedor.setLayout(new FlowLayout()); //Establece el administrador para el contenedor
         
@@ -136,8 +139,9 @@ public class AhorcadoGUI extends JFrame{
         contenedor.add(area);
         
     }
-    
+    //Clase que maneja los eventos
      private class ManejadorDeEventos implements ActionListener, MouseListener, KeyListener{
+         //Activa todos los botones
          public void enableButtons(){
             btA.setEnabled(true);btB.setEnabled(true);btC.setEnabled(true);btD.setEnabled(true);btE.setEnabled(true);btF.setEnabled(true);
             btG.setEnabled(true);btH.setEnabled(true);btI.setEnabled(true);btJ.setEnabled(true);btK.setEnabled(true);btL.setEnabled(true);
@@ -158,6 +162,7 @@ public class AhorcadoGUI extends JFrame{
             btW.setBackground(Color.cyan);btX.setBackground(Color.cyan);
             btY.setBackground(Color.cyan);btZ.setBackground(Color.cyan);
          }
+         //Desactiva todos los botones
          public void disabledButtons(){
             btA.setEnabled(false);btB.setEnabled(false);btC.setEnabled(false);btD.setEnabled(false);btE.setEnabled(false);btF.setEnabled(false);
             btG.setEnabled(false);btH.setEnabled(false);btI.setEnabled(false);btJ.setEnabled(false);btK.setEnabled(false);btL.setEnabled(false);
@@ -166,9 +171,12 @@ public class AhorcadoGUI extends JFrame{
             btY.setEnabled(false);btZ.setEnabled(false);btIngresarLetra.setEnabled(false);tfIngresarLetra.setEnabled(false);
             
          }
+         //Determina si el juego ha terminado 
          public void terminarJuego(){
              if(miJuego.Victoria()){
-            JOptionPane.showMessageDialog(null, "¡Has Ganado!");
+            JOptionPane.showMessageDialog(null, "¡Has Ganado!"
+                                                + "\nTe sobraron " + miJuego.getOportunidades() + " oportunidades"
+                                                + "\nUsaste " + (7-miJuego.getOportunidades()) + " oportunidades");
             this.disabledButtons();
         }
         if(miJuego.getOportunidades()==0){
@@ -185,7 +193,7 @@ public class AhorcadoGUI extends JFrame{
             try{
             palabraOculta=miJuego.ingresarLetra(tfIngresarLetra.getText(), palabraAux);
             }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
             }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -200,7 +208,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("a", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -214,7 +222,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("b", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -228,7 +236,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("c", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -242,7 +250,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("d", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -256,7 +264,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("e", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -270,7 +278,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("f", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -284,7 +292,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("g", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -298,7 +306,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("h", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -312,7 +320,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("i", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -326,7 +334,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("j", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -340,7 +348,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("k", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -354,7 +362,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("l", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -368,7 +376,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("m", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -382,7 +390,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("n", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -396,7 +404,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("o", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -410,7 +418,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("p", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -424,7 +432,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("q", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -438,7 +446,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("r", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -452,7 +460,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("s", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -466,7 +474,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("t", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -480,7 +488,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("u", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -494,7 +502,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("v", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -508,7 +516,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("w", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -522,7 +530,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("x", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -536,7 +544,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("y", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -550,7 +558,7 @@ public class AhorcadoGUI extends JFrame{
                 try{
                 palabraOculta=miJuego.ingresarLetra("z", palabraAux);
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra (a-z)");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una letra en minúsculas(a-z)");
                 }
                 if(!(miJuego.getPalabra().contains("-"))){
                     miJuego.setPalabra(miJuego.ocultarPalabra(miJuego.getPalabra()));
@@ -571,7 +579,8 @@ public class AhorcadoGUI extends JFrame{
             JOptionPane.showMessageDialog(null, "Debe ingresar una letra, ya sea por medio del teclado virtual o fisico,\n"
                                               + "si la letra ingresada hace parte de la palabra, se revela las posiciones\n"
                                               + "en las que se encuentra. El juego se gana si se revela la palabra completa\n"
-                                              + "Para ganar el juego, el jugador cuenta con 7 oportunidades");
+                                              + "Para ganar el juego, el jugador cuenta con 7 oportunidades"
+                                              + "\n\nLos temas de las palabras son:" + miJuego.listarTemas());
         }
         if(ae.getSource().equals(itemRestart)){
             tema=miJuego.temaAzar();
@@ -589,8 +598,7 @@ public class AhorcadoGUI extends JFrame{
             palabraAux=miJuego.getPalabra();
             lbTema.setText("Tema: " + tema);
             lbImagen.setIcon(miJuego.getImagenAhorcado());
-            this.enableButtons();
-            
+            this.enableButtons();   
         }
        }
        
@@ -752,25 +760,19 @@ public class AhorcadoGUI extends JFrame{
             ke.consume();
         }
     }
-
     @Override
     public void keyPressed(KeyEvent ke) {
     }
-
     @Override
     public void keyReleased(KeyEvent ke) {
     }        
 }
-
-    
+     
     public static void main(String[] args) {
         
         AhorcadoGUI miapp=new AhorcadoGUI();
         miapp.setSize(850, 530);
         miapp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        miapp.setVisible(true);
-        
-        
-    }
-   
+        miapp.setVisible(true); 
+    } 
 }

@@ -11,7 +11,7 @@ public class Ahorcado {
     String palabrasTema1[]={"serpiente","gorila","aguila","perro","oso","vaca","elefante","cocodrilo"}, 
            palabrasTema2[]={"mercurio","venus","tierra","marte","saturno","jupiter","neptuno","urano"},
            palabrasTema3[]={"japon","brasil","rusia","colombia","canada","alemania","italia","peru"},
-           palabrasTema4[]={"lavadora","televisor","microondas"," radio","plancha","tostadora","licuadora","nevera"},
+           palabrasTema4[]={"lavadora","televisor","microondas","radio","plancha","tostadora","licuadora","nevera"},
            palabrasTema5[]={"colores","tijeras","lapicero","cuaderno","cartuchera","lapiz","compas","carpeta"};
     int oportunidades=7;
     String palabra="";
@@ -19,6 +19,14 @@ public class Ahorcado {
     ImageIcon imgAhorcado;
     
     public Ahorcado(){
+    }
+    
+    public String listarTemas(){
+        String respuesta="";
+        for(int i=0;i<temas.length;i++){
+            respuesta+="\n"+temas[i];
+        }
+        return respuesta;
     }
     
     public void restartOportunidades(){
@@ -122,8 +130,8 @@ public class Ahorcado {
     
     public String ingresarLetra(String letra, String palabra)throws MyException{
         String respuesta="";
-        if(Integer.toString(1).equals(letra)||Integer.toString(2).equals(letra)||Integer.toString(3).equals(letra)||Integer.toString(4).equals(letra)||Integer.toString(5).equals(letra)||Integer.toString(6).equals(letra)||Integer.toString(7).equals(letra)||Integer.toString(8).equals(letra)||Integer.toString(9).equals(letra)||Integer.toString(0).equals(letra)){
-            throw new MyException("Debe ingresar una letra (a-z)");
+        if(Integer.toString(1).equals(letra)||Integer.toString(2).equals(letra)||Integer.toString(3).equals(letra)||Integer.toString(4).equals(letra)||Integer.toString(5).equals(letra)||Integer.toString(6).equals(letra)||Integer.toString(7).equals(letra)||Integer.toString(8).equals(letra)||Integer.toString(9).equals(letra)||Integer.toString(0).equals(letra)||letra.equals(letra.toUpperCase())){
+            throw new MyException("Debe ingresar una letra en minúsculas(a-z)");
         }else{
         if(palabra.contains(letra)){
             if(this.palabra.contains("-")){
