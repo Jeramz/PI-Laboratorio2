@@ -1,7 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+  Clase Ahorcado: Almacena todos los temas, palabras  y todos los estados 
+  de la imagen del juego ahorcado, lista todos los temas guardados, asigna 
+  una palabra al azar de todas las disponibles,
+
+
+  Autor: Jesus Ramirez-1731388  Samuel Velasco-1731295 Andrés Felipe-1730534
+  email: jesus.zuluaga@correounivalle.edu.co - samuel.velasco@correounivalle.edu.co
+  fecha: 21 Marzo 2018
  */
 package Ahorcado;
 
