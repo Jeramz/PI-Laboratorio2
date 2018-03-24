@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ Clase GestionMatriculasGUI: Menú para el usuario
+  Autor: Jesus Ramirez-1731388  Samuel Velasco-1731295 Andrés Felipe-1730534
+  email: jesus.zuluaga@correounivalle.edu.co - samuel.velasco@correounivalle.edu.co
+  fecha: 21 marzo 2018
  */
 package GestionDeMatriculas;
 
@@ -22,7 +23,7 @@ public class GestionMatriculasGUI extends JFrame implements ActionListener{
     JTextField tfCodigoCurso,tfNombreCurso,tfCreditosCurso,tfCodigoEstudiante,tfNombreEstudiante,tfPlanEstudio,tfCodigoAgregarNota,tfNombreCursoNota,tfNotaEstudiante;
     JComboBox comboMatricularCursos,comboCursoA,comboCursoNota;
     JList listaEstudiantes;
-    //JRadioButton rbMejorCurso,rbPromedioCurso,rbListarEstudiantes;
+    
     Universidad miuniversidad=new Universidad();
     String listaCursos[];
 
@@ -151,6 +152,7 @@ public class GestionMatriculasGUI extends JFrame implements ActionListener{
         
         
     }
+    //Actualiza los elementos en el comboBox
     public void setcombo(String[] lista,JComboBox combo ){
         lista=new String[miuniversidad.numeroCursos()];
         for(int i=0;i<lista.length;i++){

@@ -3,7 +3,6 @@
   de la imagen del juego ahorcado, lista todos los temas guardados, asigna 
   una palabra al azar de todas las disponibles,
 
-
   Autor: Jesus Ramirez-1731388  Samuel Velasco-1731295 Andrés Felipe-1730534
   email: jesus.zuluaga@correounivalle.edu.co - samuel.velasco@correounivalle.edu.co
   fecha: 21 Marzo 2018
@@ -26,6 +25,7 @@ public class Ahorcado {
     public Ahorcado(){
     }
     
+    //lista todos los temas
     public String listarTemas(){
         String respuesta="";
         for(int i=0;i<temas.length;i++){
@@ -33,6 +33,7 @@ public class Ahorcado {
         }
         return respuesta;
     }
+    
     
     public void restartOportunidades(){
         this.oportunidades=7;
@@ -53,7 +54,7 @@ public class Ahorcado {
     public void setHeganado(boolean heGanado){
     this.heGanado=heGanado;
     }
-    
+    //determina si se ha ganado el juego. Retorna un booleano
     public boolean Victoria(){
         boolean respuesta=false;
         if(!(this.palabra.contains("-"))&& this.oportunidades>0 && !(this.palabra.isEmpty())){
@@ -71,6 +72,7 @@ public class Ahorcado {
         return imgAhorcado;
     }
     
+    //cambia la imagen dependiendo de las oportunidades restantes, retorna una imagen
     public void cambiarEstadoImagen(){
         ImageIcon respuesta=new ImageIcon();
         if(oportunidades==0){
@@ -100,10 +102,11 @@ public class Ahorcado {
          this.imgAhorcado=respuesta;   
         }
     
+    //Escoge un tema al azar, retorna un string
     public String temaAzar(){
         return temas[(int)(Math.random()*temas.length-1)];
     }
-    
+    //Selecciona una palabra al azar de un tema determinado. Le entra un String (Tema), retorna un String (palabra)
     public String palabraAzar(String tema){
         String resultado="";
         if(temas[0].equals(tema)){
@@ -123,7 +126,7 @@ public class Ahorcado {
         }
         return resultado;
     }
-    
+    //le ingresa un String (palabra), retorna la palabra oculta por (-)
     public String ocultarPalabra(String palabra){
         String resultado="";
         for(int i=0;i<palabra.length();i++){
@@ -132,7 +135,7 @@ public class Ahorcado {
         return resultado;
     }
     
-    
+    //Ingresa una letra, si hace parte de la palabra, actualiza la palabra oculta, de lo contrario, resta una oportunidad al usuario
     public String ingresarLetra(String letra, String palabra)throws MyException{
         String respuesta="";
         if(Integer.toString(1).equals(letra)||Integer.toString(2).equals(letra)||Integer.toString(3).equals(letra)||Integer.toString(4).equals(letra)||Integer.toString(5).equals(letra)||Integer.toString(6).equals(letra)||Integer.toString(7).equals(letra)||Integer.toString(8).equals(letra)||Integer.toString(9).equals(letra)||Integer.toString(0).equals(letra)||letra.equals(letra.toUpperCase())){
@@ -170,7 +173,7 @@ public class Ahorcado {
         return respuesta;
         }
     }
-    
+    //Actualiza la palabra oculta 
     public void actualizarPalabra(String ocultarRespuesta){
         String respuesta="";
         
