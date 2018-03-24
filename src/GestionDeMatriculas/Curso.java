@@ -3,9 +3,10 @@
   un estudiante y del mismo modo, los retorna. Matricula a un estudiante en el curso
   le asigna la nota a un estudiante, lista los estudiantes matriculados al curso
   retorna el promedio de notas de un curso, imprime al mejor estudiante del curso.
+
   Autor: Jesus Ramirez-1731388  Samuel Velasco-1731295 Andrés Felipe-1730534
-  email: jesus.zuluaga@correounivalle.edu.co - samuel.velasco@correounivalle.edu.co
-  fecha: 27 febrero 2018
+  email: jesus.zuluaga@correounivalle.edu.co - samuel.velasco@correounivalle.edu.co - andres.lopez@correounivalle.edu.co
+  fecha: 21 Marzo 2018
  */
 package GestionDeMatriculas;
 
